@@ -12,7 +12,7 @@ Manual of CoreGeneBuilder
     ANNEXE 2 - DETAILS OF MODULES <br>
 
 
-# ===
+___
 
 I-CITATION
 ----------
@@ -20,7 +20,7 @@ Please cite CoreGeneBuilder using the following doi:
 <TODO: INSERT_DOI_OF_GITHUB_REPOSITORY>
 
 
-# ===
+___
 
 
 II-INTRODUCTION
@@ -112,7 +112,7 @@ $DIR/core_genome
 ~~~~
 
 
-# ===
+___
 
 III-ARCHITECTURE OF THE PIPELINE
 --------------------------------
@@ -130,7 +130,7 @@ doc       : contains this README.txt file and a figure showing the main steps of
 ~~~~
 
 
-# ===
+___
 
 IV-USAGE
 --------
@@ -193,7 +193,7 @@ EXAMPLES:
      coregenebuilder -d klpn5refannot -n klpn -p 100 -t 4
 ~~~~
 
-# ===
+___
 
 V-QUICK START
 -------------
@@ -294,7 +294,7 @@ core_genome       : contains input and output files of module COREGENOME, contai
 ~~~~
 
 
-# ===
+___
 
 ANNEXES
 ---------
