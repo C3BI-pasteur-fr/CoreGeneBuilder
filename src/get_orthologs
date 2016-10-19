@@ -1,0 +1,58 @@
+#!/bin/tcsh  -f
+
+#####################################################################################################################
+# CoreGeneBuilder - extracts a core genome or a persistent genome from a set of bacterial genomes.                  #
+# Authors : Elise Larsonneur, Marie Touchon, Damien Mornico, Alexis Criscuolo, Sylvain Brisse, Eduardo P. C. Rocha  #
+# Copyright © 2016 IFB, CNRS, Institut Pasteur                                                                      #
+#                                                                                                                   #
+# Please read README file for contact information.                                                                  #
+#                                                                                                                   #
+# This file is part of CoreGeneBuilder.                                                                             #
+#                                                                                                                   #
+# CoreGeneBuilder is free software: you can redistribute it and/or modify                                           #
+# it under the terms of the GNU General Public License as published by                                              #
+# the Free Software Foundation, either version 3 of the License, or                                                 #
+# (at your option) any later version.                                                                               #
+#                                                                                                                   #
+# CoreGeneBuilder is distributed in the hope that it will be useful,                                                # 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of                                                    # 
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                                                     #
+# GNU General Public License for more details.                                                                      #
+#                                                                                                                   #
+# You should have received a copy of the GNU General Public License                                                 #
+# along with CoreGeneBuilder.  If not, see <http://www.gnu.org/licenses/>.                                          #
+#                                                                                                                   #
+# get_orthologs: computes the list of core genes from the BBH lists.                                                # 
+# Authors: Marie Touchon, Eduardo P. C. Rocha                                                                       #
+#####################################################################################################################
+
+
+if ($#argv != 3) then
+	echo "[ERROR] $0 requires 3 arguments."
+        echo "$0 computes the list of core genes from the BBH lists."
+	exit 1
+endif
+
+echo "ls $3/../$1*.synt"
+set data = `ls $3/../$1*.synt `
+
+set name = $2
+
+if ($#data == 1) then
+	awk '{print $1,$3, $2, $5}' $data[1] >! $3/CoreGenome-$name.lst
+	exit
+endif
+
+echo "$#data, $data"
+
+join $data[1] $data[2] | awk '{print $1,$4,$2,$5, $8,$11}' >! $3/first
+
+@ i = 3
+
+while ($i <= $#data)
+	join $3/first $data[$i] | awk '{res = $1; for (i=2;i<=NF-5; i++) res = res " " $i; print res, $(NF-2)}' >! $3/second
+	cp -f $3/second $3/first
+	@ i ++
+end
+mv $3/first $3/CoreGenome-$name.lst
+ 

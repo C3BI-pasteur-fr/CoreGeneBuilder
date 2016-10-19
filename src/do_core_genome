@@ -1,0 +1,74 @@
+#!/bin/tcsh -f
+
+#####################################################################################################################
+# CoreGeneBuilder - extracts a core genome or a persistent genome from a set of bacterial genomes.                  #
+# Authors: Elise Larsonneur, Marie Touchon, Damien Mornico, Alexis Criscuolo, Sylvain Brisse, Eduardo P. C. Rocha   #
+# Copyright © 2016 IFB, CNRS, Institut Pasteur                                                                      #
+#                                                                                                                   #
+# Please read README file for contact information.                                                                  #
+#                                                                                                                   #
+# This file is part of CoreGeneBuilder.                                                                             #
+#                                                                                                                   #
+# CoreGeneBuilder is free software: you can redistribute it and/or modify                                           #
+# it under the terms of the GNU General Public License as published by                                              #
+# the Free Software Foundation, either version 3 of the License, or                                                 #
+# (at your option) any later version.                                                                               #
+#                                                                                                                   #
+# CoreGeneBuilder is distributed in the hope that it will be useful,                                                # 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of                                                    # 
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                                                     #
+# GNU General Public License for more details.                                                                      #
+#                                                                                                                   #
+# You should have received a copy of the GNU General Public License                                                 #
+# along with CoreGeneBuilder.  If not, see <http://www.gnu.org/licenses/>.                                          #
+#                                                                                                                   #
+# do_core_genome: computes a core genome from a set of bacterial proteomes.                                         #
+# Authors: Marie Touchon, Eduardo P. C. Rocha                                                                       #
+#####################################################################################################################
+
+
+if ($#argv != 8) then
+	echo "[ERROR] $0 requires 8 arguments."
+        echo "$0 computes a core genome from a set of bacterial proteomes."
+	exit 1
+endif
+
+
+set tempoutdir = $4
+set dd = $tempoutdir/Proteins    #location of *.prt files
+set soft = `dirname $0` #location of soft files (opscan)
+set mat = $8 #location of soft files (BLOSUM60)
+set output_dir = $tempoutdir/output #location for output
+
+set species = $1
+
+set sim = $2
+set lenratio = $3
+
+set syntgenelim = $5
+set syntradius = $6
+set syntmaxdist = $7
+
+set file = $tempoutdir/../Genomes-$species.lst
+set ref = `awk '{if(NR==1) printf $1}' $file`
+set ref = $ref:t
+echo $ref
+
+echo "============================="
+echo "go_opscan_BBH $dd $mat $soft $file $sim $lenratio $syntgenelim $syntradius $syntmaxdist"
+go_opscan_BBH $dd $mat $soft $file $sim $lenratio $syntgenelim $syntradius $syntmaxdist
+set exit_status = $?
+if ($exit_status != 0) then 
+  echo "[ERROR] Command 'go_opscan_BBH $dd $mat $soft $file $sim $lenratio $syntgenelim $syntradius $syntmaxdist' exits with an error."
+  exit $exit_status
+endif
+
+echo "============================="
+echo "get_orthologs $ref $species $output_dir"
+get_orthologs $ref $species $output_dir
+set exit_status = $?
+if ($exit_status != 0) then 
+  echo "[ERROR] Command 'get_orthologs $ref $species $output_dir' exits with an error."
+  exit $exit_status
+endif
+

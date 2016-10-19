@@ -1,0 +1,19 @@
+#File to set env variables
+MAINDIR=..
+ANDI=$MAINDIR/ext-tools/andi/andi-0.9.4/bin/andi
+ECAMBER=$MAINDIR/ext-tools/ecamber
+CGB_BIN=$(readlink -f $MAINDIR/src)/
+CGB_CONFIG=$(readlink -f $MAINDIR/config)
+COREGENOME=$MAINDIR/ext-tools/CoreGenome
+PYTHON=Python/2.7.8
+R=R/3.1.2
+OPSCAN_MATRIX=$(readlink -f $COREGENOME/data/BLOSUM60)
+DATA=$(readlink -f $MAINDIR/data)
+LOG=logs
+DATA_ASSEMBLY_DIR=assemblies
+DATA_ECAMBER_OUT=$DATA
+DATA_ECAMBER_OUTPUT=ecamber_output
+DATA_GENE_DIR=genes
+DATA_PROT_DIR=proteins
+DATA_DIVERSITY_DIR=diversity
+DATA_CORE_DIR=core_genome

@@ -1,0 +1,5 @@
+#coreGenome parameters
+temp_dir=temp
+output_dir=$temp_dir/output
+input_dir=$temp_dir/Proteins
+tmp_dir=$temp_dir/TMP
