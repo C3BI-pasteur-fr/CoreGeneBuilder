@@ -29,7 +29,7 @@ Nothing to be done. A Virtual Machine 'CoreGeneBuilder' is already available on 
 You need to have a user account to use CoreGeneBuilder on the cloud:
 https://cloud.france-bioinformatique.fr/cloud/
 
-#display help using this command :
+Display help using this command :
 ~~~~
 $ coregenebuilder
 ~~~~
