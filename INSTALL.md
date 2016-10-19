@@ -51,7 +51,7 @@ biopython (http://biopython.org) <br>
 `andi` - v0.9.4 <br>
 `opscan` <br>
 
-# ===
+___
 Before starting to install the 3 dependencies, define this environment variable
 ~~~~
 export CGPIPELINE=<ABSOLUTE_PATH_TO_CORE_GENOME_PIPELINE>
@@ -60,7 +60,7 @@ export CGPIPELINE=<ABSOLUTE_PATH_TO_CORE_GENOME_PIPELINE>
 export CGPIPELINE=/home/username/programs/CoreGeneBuilder
 ~~~~
 
-# ===
+___
 
 ###### INSTALLATION OF ANDI
 
@@ -111,7 +111,7 @@ $CGPIPELINE/ext-tools/andi/andi-0.9.4/bin/andi -h
 $CGPIPELINE/ext-tools/andi/andi-0.9.4/bin/andi <fasta> 1> result.matrix
 ~~~~
 
-# ===
+___
 
 ###### INSTALLATION OF ECAMBER DEPENDENCIES
 
@@ -243,7 +243,7 @@ http://bioputer.mimuw.edu.pl/ecamber/software.html
 python ecamber.py -a pr -d klpn5refannot -w 1
 ~~~~
 
-# ===
+___
 
 ###### INSTALLATION OF OPSCAN
 
@@ -284,7 +284,7 @@ cp -p ext-tools/CoreGenome/src/opscan_src_files/bin/opscan src/.
 cp -p ext-tools/CoreGenome/src/opscan_src_files/data/BLOSUM60 ext-tools/CoreGenome/data/.
 ~~~~
 
-# ===
+___
 
 ###### CONFIGURE COREGENEBUILDER PIPELINE
 

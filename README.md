@@ -149,11 +149,11 @@ core_genome       : contains input and output files of module COREGENOME, contai
  `doc/CoreGeneBuilder_manual.md`
 
 
- ACKNOWLEDGMENTS
- ---------------
- This work was financially supported
- by the French Institute of Bioinformatics (Grant ANR-11-INBS-0013)
- and by the Pasteur International Bioresources Network (PIBnet) programme.
+ACKNOWLEDGMENTS
+---------------
+This work was financially supported
+by the French Institute of Bioinformatics (Grant ANR-11-INBS-0013)
+and by the Pasteur International Bioresources Network (PIBnet) programme.
 
 
 AUTHORS
