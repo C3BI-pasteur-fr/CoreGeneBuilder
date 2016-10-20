@@ -73,7 +73,7 @@ while ($i <= 1)
 			$ops -H -M $mm -t $TH -r $r -F -E -c -Q -U -O $dd/$genomes[$i].prt $dd/$genomes[$j].prt >! $id
                         set exit_status = $?
                         if ($exit_status != 0) then 
-                           echo "[ERROR] Command '$ops -H -M $mm -t $TH -r $r -F -E -c -Q -U -O $dd/$genomes[$i].prt $dd/$genomes[$j].prt > $id' exits with an error."
+                           echo "[ERROR] Command '$ops -H -M $mm -t $TH -r $r -F -E -c -Q -U -O $dd/$genomes[$i].prt $dd/$genomes[$j].prt > $id' exits with an error. Maybe test new settings (similarity percent and protein length ratio)"
                         endif
 
                         if (! -e $id) then
