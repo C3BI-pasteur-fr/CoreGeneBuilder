@@ -352,7 +352,7 @@ function main {
 
   ### checking if directory containing genomes (assemblies) exists and is not empty
   if [[ ! -e "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies does not exist, please create it." ; exit 1 ; fi
-  if [[ ! -s "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies is empty, please add some genome fasta files into it" ; exit 1 ; fi
+  if [[ ! "$(ls -A ${DATA}/${DIRECTORY}/assemblies)" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies is empty, please add some genome fasta files into it" ; exit 1 ; fi
 
   ### checking if reference genome is supplied
   if [[ "${REFGENOME}" = 'N.O.R.E.F' ]]; then echo "Reference genome will be the first fasta file appearing in directory ${DIRECTORY}." ; fi
@@ -490,7 +490,7 @@ function main {
   # STEP 5 - create core genes fasta by gene
 
   cgbycgdir="${coredir}/core_genes_by_gene"
-  if [[ -d "${cgbycgdir}" ]]; then rm -rf "${cgbycgdir}"; fi
+  if [[ -d "${cgbycgdir}" ]]; then rm -r "${cgbycgdir}"; fi
 
   echo 'extract core genes by gene' >> "${LOG}" 2>&1
   echo 'extract core genes by gene';

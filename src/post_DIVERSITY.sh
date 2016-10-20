@@ -199,7 +199,7 @@ function main {
 
   ### checking if directory containing genomes (assemblies) exists and is not empty
   if [[ ! -e "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies does not exist, please create it." ; exit 1 ; fi
-  if [[ ! -s "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies is empty, please add some genome fasta files into it" ; exit 1 ; fi
+  if [[ ! "$(ls -A ${DATA}/${DIRECTORY}/assemblies)" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies is empty, please add some genome fasta files into it" ; exit 1 ; fi
 
   ### checking if reference genome is supplied
   if [[ "${REFGENOME}" = 'N.O.R.E.F' ]]; then echo "Reference genome will be the first fasta file appearing in directory ${DIRECTORY}." ; fi
@@ -229,21 +229,6 @@ function main {
   else 
     echo '[ERROR] Bad value for option -N'; exit 1;  
   fi  
-
-
-
-
-  #files transfers of diversity output to ecamber input directory (fasta)
-  echo "copy genomes to ecamber input directory (ext-tools/ecamber/datasets/${DIRECTORY}) from the list 'selected_genomes_list.txt'." >> "${LOG}" 2>&1
-  echo "copy genomes to ecamber input directory (ext-tools/ecamber/datasets/${DIRECTORY}) from the list 'selected_genomes_list.txt'.";
-  mkdir -p "${DATA_ECAMBER_OUT}/${DIRECTORY}" >> "${LOG}" 2>&1
-  mkdir -p "${DATA_ECAMBER_OUT}/${DIRECTORY}/genomes" >> "${LOG}" 2>&1
-  genomelist="$(real_path_file "${DATA}/${DIRECTORY}/${DATA_DIVERSITY_DIR}/selected_genomes_list.txt")"
-  if [[ ! -s "${genomelist}" ]]; then echo "[ERROR] Genome list ${genomelist} is empty, exiting program..."; exit 1; fi;
-  while read line; do
-    fasta="$(readlink -f "${line}")"
-    cp "${fasta}" "${DATA_ECAMBER_OUT}/${DIRECTORY}/genomes/" >> "${LOG}" 2>&1
-  done < ${genomelist}
 
   #merge logs
   cat "${DATA}/${DIRECTORY}/logs/${DIRECTORY}.diversity."?.log > "${DATA}/${DIRECTORY}/logs/${DIRECTORY}.diversity.log"

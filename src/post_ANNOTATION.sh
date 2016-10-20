@@ -152,24 +152,24 @@ function main {
 
 
   ### checking name 
-  if [[ "${NAME}" = 'N.O.N.A.M.E' ]]; then echo '[ERROR] no name supplied (mandatory option -n)' >> "${LOG}" 2>&1; exit 1 ; fi
+  if [[ "${NAME}" = 'N.O.N.A.M.E' ]]; then echo '[ERROR] no name supplied (mandatory option -n)' ; exit 1 ; fi
 
   ### checking if directory containing genomes (assemblies) exists and is not empty
-  if [[ ! -e "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies does not exist, please create it." >> "${LOG}" 2>&1 ; exit 1 ; fi
-  if [[ ! -s "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies is empty, please add some genome fasta files into it" >> "${LOG}" 2>&1 ; exit 1 ; fi
+  if [[ ! -e "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies does not exist, please create it." ; exit 1 ; fi
+  if [[ ! "$(ls -A ${DATA}/${DIRECTORY}/assemblies)" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies is empty, please add some genome fasta files into it" ; exit 1; fi
 
   ### checking if reference genome is supplied
-  if [[ "${REFGENOME}" = 'N.O.R.E.F' ]]; then echo "Reference genome will be the first fasta file appearing in directory ${DIRECTORY}." >> "${LOG}" 2>&1 ; fi
-  if [[ "${REFGENOME}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/assemblies/${REFGENOME}" ]]; then echo "[ERROR] input fasta file '${DATA}/${DIRECTORY}/assemblies/${REFGENOME}' does not exist (option -g)." >> "${LOG}" 2>&1 ; exit 1 ; fi
-  if [[ "${REFGENOME}" != 'N.O.R.E.F' ]] && [[ ! -s "${DATA}/${DIRECTORY}/assemblies/${REFGENOME}" ]]; then echo "[ERROR] input fasta file '${DATA}/${DIRECTORY}/assemblies/${REFGENOME}' is empty (option -g)." >> "${LOG}" 2>&1 ; exit 1 ; fi
+  if [[ "${REFGENOME}" = 'N.O.R.E.F' ]]; then echo "Reference genome will be the first fasta file appearing in directory ${DIRECTORY}." ; fi
+  if [[ "${REFGENOME}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/assemblies/${REFGENOME}" ]]; then echo "[ERROR] input fasta file '${DATA}/${DIRECTORY}/assemblies/${REFGENOME}' does not exist (option -g)." ; exit 1 ; fi
+  if [[ "${REFGENOME}" != 'N.O.R.E.F' ]] && [[ ! -s "${DATA}/${DIRECTORY}/assemblies/${REFGENOME}" ]]; then echo "[ERROR] input fasta file '${DATA}/${DIRECTORY}/assemblies/${REFGENOME}' is empty (option -g)." ; exit 1 ; fi
 
   ## checking if reference genbank file is supplied (annotation)
-  if [[ "${REFANNOTATION}" = 'N.O.R.E.F' ]]; then echo 'No reference genome annotation provided (genbank file).' >> "${LOG}" 2>&1 ; fi
-  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/ref_gbk_annotation" ]]; then echo "[ERROR] directory containing input genbank file, '${DATA}/${DIRECTORY}/ref_gbk_annotation' does not exist." >> "${LOG}" 2>&1 ; exit 1 ; fi
-  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}" ]]; then echo "[ERROR] input genbank file '${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}' does not exist (option -a)." >> "${LOG}" 2>&1 ; exit 1 ; fi
-  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -s "${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}" ]]; then echo "[ERROR] input genbank file '${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}' is empty (option -a)." >> "${LOG}" 2>&1 ; exit 1 ; fi
+  if [[ "${REFANNOTATION}" = 'N.O.R.E.F' ]]; then echo 'No reference genome annotation provided (genbank file).' ; fi
+  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/ref_gbk_annotation" ]]; then echo "[ERROR] directory containing input genbank file, '${DATA}/${DIRECTORY}/ref_gbk_annotation' does not exist." ; exit 1 ; fi
+  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}" ]]; then echo "[ERROR] input genbank file '${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}' does not exist (option -a)." ; exit 1 ; fi
+  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -s "${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}" ]]; then echo "[ERROR] input genbank file '${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}' is empty (option -a)." ; exit 1 ; fi
   if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ "${REFIDPATTERN}" = 'N.O.P.A.T.T.E.R.N' ]]; then
-    echo "[ERROR] prefix (only letters) of genome sequence ids found in reference fasta and genbank files REQUIRED (option -e) if reference genbank file is supplied as reference annotation (option -a). Examples : 'NC_', 'NZ_', 'AKAC'." >> "${LOG}" 2>&1 ; exit 1 ;
+    echo "[ERROR] prefix (only letters) of genome sequence ids found in reference fasta and genbank files REQUIRED (option -e) if reference genbank file is supplied as reference annotation (option -a). Examples : 'NC_', 'NZ_', 'AKAC'." ; exit 1 ;
   fi
 
 
@@ -182,12 +182,16 @@ function main {
   #Copy of eCamber outputs
   echo "copy of ecamber outputs to directory ${DIRECTORY}" >> "$LOG" 2>&1
   echo "copy of ecamber outputs to directory ${DIRECTORY}";
+  for file in ${DATA}/${DIRECTORY}/${DATA_GENE_DIR}/*; do if [[ -f "${file}" ]]; then rm "${file}" >> "${LOG}" 2>&1; fi; done
+  for file in ${DATA}/${DIRECTORY}/${DATA_PROT_DIR}/*; do if [[ -f "${file}" ]]; then rm "${file}" >> "${LOG}" 2>&1; fi; done
   cp "${DATA_ECAMBER_OUT}/${DIRECTORY}/output/genes_dna/"* "${DATA}/${DIRECTORY}/${DATA_GENE_DIR}" >> "$LOG" 2>&1
   cp "${DATA_ECAMBER_OUT}/${DIRECTORY}/output/genes_aa/"* "${DATA}/${DIRECTORY}/${DATA_PROT_DIR}" >> "$LOG" 2>&1
   cp "${DATA_ECAMBER_OUT}/${DIRECTORY}/output/clusters_table."* "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}" >> "$LOG" 2>&1
   cp "${DATA_ECAMBER_OUT}/${DIRECTORY}/output/cluster_gene_names."* "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}" >> "$LOG" 2>&1
+  if [[ ! "$(ls -A ${DATA}/${DIRECTORY}/${DATA_GENE_DIR})" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/${DATA_GENE_DIR} is empty, but required for the next step" >> "${LOG}" 2>&1; exit 1; fi
+  if [[ ! "$(ls -A ${DATA}/${DIRECTORY}/${DATA_PROT_DIR})" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/${DATA_PROT_DIR} is empty, but required for the next step" >> "${LOG}" 2>&1; exit 1; fi
 
-  #Edit fasta format for Gembase
+  #Convert current fasta format to gembase format
   echo 'format ecamber annotations to coregenome annotation input format' >> "$LOG" 2>&1
   echo 'format ecamber annotations to coregenome annotation input format'
   for f in $(ls -1 "${DATA}/${DIRECTORY}/${DATA_GENE_DIR}"); do
@@ -198,18 +202,18 @@ function main {
   done
 
   #move ecamber outputs to directory 'DATA_ECAMBER_OUTPUT'
-  mv "${DATA}/${DIRECTORY}/anns_input" "${DATA}/${DIRECTORY}/anns_parsed" "${DATA}/${DIRECTORY}/blast" "${DATA}/${DIRECTORY}/cambervis" "${DATA}/${DIRECTORY}/formatdb.log" "${DATA}/${DIRECTORY}/genomes" "${DATA}/${DIRECTORY}/genomes_dbs" "${DATA}/${DIRECTORY}/output" "${DATA}/${DIRECTORY}/prodigal" "${DATA}/${DIRECTORY}/results" "${DATA}/${DIRECTORY}/strains.txt" "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/."
+  mv "${DATA_ECAMBER_OUT}/${DIRECTORY}/anns_input" "${DATA_ECAMBER_OUT}/${DIRECTORY}/anns_parsed" "${DATA_ECAMBER_OUT}/${DIRECTORY}/blast" "${DATA_ECAMBER_OUT}/${DIRECTORY}/cambervis" "${DATA_ECAMBER_OUT}/${DIRECTORY}/formatdb.log" "${DATA_ECAMBER_OUT}/${DIRECTORY}/genomes" "${DATA_ECAMBER_OUT}/${DIRECTORY}/genomes_dbs" "${DATA_ECAMBER_OUT}/${DIRECTORY}/output" "${DATA_ECAMBER_OUT}/${DIRECTORY}/prodigal" "${DATA_ECAMBER_OUT}/${DIRECTORY}/results" "${DATA_ECAMBER_OUT}/${DIRECTORY}/strains.txt" "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/."  >> "$LOG" 2>&1
 
   #Delete eCamber outputs (previously copied)
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/anns_input" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/anns_input"; fi
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/anns_parsed" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/anns_parsed"; fi
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/blast" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/blast"; fi
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/cambervis" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/cambervis"; fi
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/genomes" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/genomes"; fi
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/genomes_dbs" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/genomes_dbs"; fi
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/output" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/output"; fi
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/prodigal" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/prodigal"; fi
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/results" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/results"; fi
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/anns_input" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/anns_input"; fi
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/anns_parsed" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/anns_parsed"; fi
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/blast" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/blast"; fi
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/cambervis" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/cambervis"; fi
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/genomes" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/genomes"; fi
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/genomes_dbs" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/genomes_dbs"; fi
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/output" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/output"; fi
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/prodigal" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/prodigal"; fi
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/results" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/results"; fi
   if [[ -f "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/formatdb.log" ]]; then rm "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}/formatdb.log"; fi
 
   #merge logs

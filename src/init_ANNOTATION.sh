@@ -271,24 +271,24 @@ function main {
 
 
   ### checking name 
-  if [[ "${NAME}" = 'N.O.N.A.M.E' ]]; then echo '[ERROR] no name supplied (mandatory option -n)' >> "${LOG}" 2>&1; exit 1 ; fi
+  if [[ "${NAME}" = 'N.O.N.A.M.E' ]]; then echo '[ERROR] no name supplied (mandatory option -n)' ; exit 1 ; fi
 
   ### checking if directory containing genomes (assemblies) exists and is not empty
-  if [[ ! -e "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies does not exist, please create it." >> "${LOG}" 2>&1 ; exit 1 ; fi
-  if [[ ! -s "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies is empty, please add some genome fasta files into it" >> "${LOG}" 2>&1 ; exit 1 ; fi
+  if [[ ! -e "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies does not exist, please create it." ; exit 1 ; fi
+  if [[ ! "$(ls -A ${DATA}/${DIRECTORY}/assemblies)" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies is empty, please add some genome fasta files into it" ; exit 1; fi
 
   ### checking if reference genome is supplied
-  if [[ "${REFGENOME}" = 'N.O.R.E.F' ]]; then echo "Reference genome will be the first fasta file appearing in directory ${DIRECTORY}." >> "${LOG}" 2>&1 ; fi
-  if [[ "${REFGENOME}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/assemblies/${REFGENOME}" ]]; then echo "[ERROR] input fasta file '${DATA}/${DIRECTORY}/assemblies/${REFGENOME}' does not exist (option -g)." >> "${LOG}" 2>&1 ; exit 1 ; fi
-  if [[ "${REFGENOME}" != 'N.O.R.E.F' ]] && [[ ! -s "${DATA}/${DIRECTORY}/assemblies/${REFGENOME}" ]]; then echo "[ERROR] input fasta file '${DATA}/${DIRECTORY}/assemblies/${REFGENOME}' is empty (option -g)." >> "${LOG}" 2>&1 ; exit 1 ; fi
+  if [[ "${REFGENOME}" = 'N.O.R.E.F' ]]; then echo "Reference genome will be the first fasta file appearing in directory ${DIRECTORY}." ; fi
+  if [[ "${REFGENOME}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/assemblies/${REFGENOME}" ]]; then echo "[ERROR] input fasta file '${DATA}/${DIRECTORY}/assemblies/${REFGENOME}' does not exist (option -g)." ; exit 1 ; fi
+  if [[ "${REFGENOME}" != 'N.O.R.E.F' ]] && [[ ! -s "${DATA}/${DIRECTORY}/assemblies/${REFGENOME}" ]]; then echo "[ERROR] input fasta file '${DATA}/${DIRECTORY}/assemblies/${REFGENOME}' is empty (option -g)." ; exit 1 ; fi
 
   ## checking if reference genbank file is supplied (annotation)
-  if [[ "${REFANNOTATION}" = 'N.O.R.E.F' ]]; then echo 'No reference genome annotation provided (genbank file).' >> "${LOG}" 2>&1 ; fi
-  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/ref_gbk_annotation" ]]; then echo "[ERROR] directory containing input genbank file, '${DATA}/${DIRECTORY}/ref_gbk_annotation' does not exist." >> "${LOG}" 2>&1 ; exit 1 ; fi
-  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}" ]]; then echo "[ERROR] input genbank file '${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}' does not exist (option -a)." >> "${LOG}" 2>&1 ; exit 1 ; fi
-  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -s "${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}" ]]; then echo "[ERROR] input genbank file '${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}' is empty (option -a)." >> "${LOG}" 2>&1 ; exit 1 ; fi
+  if [[ "${REFANNOTATION}" = 'N.O.R.E.F' ]]; then echo 'No reference genome annotation provided (genbank file).' ; fi
+  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/ref_gbk_annotation" ]]; then echo "[ERROR] directory containing input genbank file, '${DATA}/${DIRECTORY}/ref_gbk_annotation' does not exist." ; exit 1 ; fi
+  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -e "${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}" ]]; then echo "[ERROR] input genbank file '${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}' does not exist (option -a)." ; exit 1 ; fi
+  if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ ! -s "${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}" ]]; then echo "[ERROR] input genbank file '${DATA}/${DIRECTORY}/ref_gbk_annotation/${REFANNOTATION}' is empty (option -a)." ; exit 1 ; fi
   if [[ "${REFANNOTATION}" != 'N.O.R.E.F' ]] && [[ "${REFIDPATTERN}" = 'N.O.P.A.T.T.E.R.N' ]]; then 
-    echo "[ERROR] prefix (only letters) of genome sequence ids found in reference fasta and genbank files REQUIRED (option -e) if reference genbank file is supplied as reference annotation (option -a). Examples : 'NC_', 'NZ_', 'AKAC'." >> "${LOG}" 2>&1 ; exit 1 ; 
+    echo "[ERROR] prefix (only letters) of genome sequence ids found in reference fasta and genbank files REQUIRED (option -e) if reference genbank file is supplied as reference annotation (option -a). Examples : 'NC_', 'NZ_', 'AKAC'." ; exit 1 ; 
   fi  
 
 
@@ -297,6 +297,20 @@ function main {
   echo 'starting annotation step...';
   echo 'transfer of genomes to ecamber directory (ext-tools/ecamber/datasets) and format fasta headers' >> "${LOG}" 2>&1
   echo 'transfer of genomes to ecamber directory (ext-tools/ecamber/datasets) and format fasta headers';
+
+
+  #files transfers of diversity output to ecamber input directory (fasta)
+  echo "copy genomes to ecamber input directory (ext-tools/ecamber/datasets/${DIRECTORY}) from the list 'selected_genomes_list.txt'." >> "${LOG}" 2>&1
+  echo "copy genomes to ecamber input directory (ext-tools/ecamber/datasets/${DIRECTORY}) from the list 'selected_genomes_list.txt'.";
+  mkdir -p "${DATA_ECAMBER_OUT}/${DIRECTORY}" >> "${LOG}" 2>&1
+  if [[ -d "${DATA_ECAMBER_OUT}/${DIRECTORY}/genomes" ]]; then rm -r "${DATA_ECAMBER_OUT}/${DIRECTORY}/genomes" >> "${LOG}" 2>&1; fi
+  mkdir -p "${DATA_ECAMBER_OUT}/${DIRECTORY}/genomes" >> "${LOG}" 2>&1
+  genomelist="$(real_path_file "${DATA}/${DIRECTORY}/${DATA_DIVERSITY_DIR}/selected_genomes_list.txt")"
+  if [[ ! -s "${genomelist}" ]]; then echo "[ERROR] Genome list ${genomelist} is empty, exiting program..."; exit 1; fi; 
+  while read line; do
+    fasta="$(readlink -f "${line}")"
+    cp "${fasta}" "${DATA_ECAMBER_OUT}/${DIRECTORY}/genomes/" >> "${LOG}" 2>&1
+  done < ${genomelist}
 
 
   #fasta header modification
@@ -365,6 +379,7 @@ function main {
 
 
     #rename annotation file as .txt
+    if [[ -d "${DATA}/${DIRECTORY}/ref_gbk_annotation/parsed" ]]; then rm -r "${DATA}/${DIRECTORY}/ref_gbk_annotation/parsed" >> "${LOG}" 2>&1; fi
     mkdir -p "${DATA}/${DIRECTORY}/ref_gbk_annotation/parsed" >> "${LOG}" 2>&1
     cp -p "${DATA}/${DIRECTORY}/ref_gbk_annotation/${refannotname}" "${DATA}/${DIRECTORY}/ref_gbk_annotation/parsed/${newrefannotname}" >> "${LOG}" 2>&1 #ecamber requires .txt extension for annotation inputs
 
@@ -392,11 +407,23 @@ function main {
     fi
 
     ## copy genbank annotation to ecamber directory
+    if [[ -d "${DATA_ECAMBER_OUT}/${DIRECTORY}/anns_input" ]]; then rm -r "${DATA_ECAMBER_OUT}/${DIRECTORY}/anns_input" >> "${LOG}" 2>&1; fi
     mkdir -p "${DATA_ECAMBER_OUT}/${DIRECTORY}/anns_input" >> "${LOG}" 2>&1
     mkdir -p "${DATA_ECAMBER_OUT}/${DIRECTORY}/anns_input/refseq_gbk" >> "${LOG}" 2>&1
     cp -p "${genbank_file_}" "${DATA_ECAMBER_OUT}/${DIRECTORY}/anns_input/refseq_gbk/." >> "${LOG}" 2>&1
 
   fi
+
+
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_ECAMBER_OUTPUT}"; fi
+  if [[ -d "${DATA_ECAMBER_OUT}/${DIRECTORY}/anns_parsed" ]]; then rm -r "${DATA_ECAMBER_OUT}/${DIRECTORY}/anns_parsed"; fi
+  if [[ -d "${DATA_ECAMBER_OUT}/${DIRECTORY}/blast" ]]; then rm -r "${DATA_ECAMBER_OUT}/${DIRECTORY}/blast"; fi
+  if [[ -d "${DATA_ECAMBER_OUT}/${DIRECTORY}/cambervis" ]]; then rm -r "${DATA_ECAMBER_OUT}/${DIRECTORY}/cambervis"; fi
+  if [[ -d "${DATA_ECAMBER_OUT}/${DIRECTORY}/genomes_dbs" ]]; then rm -r "${DATA_ECAMBER_OUT}/${DIRECTORY}/genomes_dbs"; fi
+  if [[ -d "${DATA_ECAMBER_OUT}/${DIRECTORY}/output" ]]; then rm -r "${DATA_ECAMBER_OUT}/${DIRECTORY}/output"; fi
+  if [[ -d "${DATA_ECAMBER_OUT}/${DIRECTORY}/prodigal" ]]; then rm -r "${DATA_ECAMBER_OUT}/${DIRECTORY}/prodigal"; fi
+  if [[ -d "${DATA_ECAMBER_OUT}/${DIRECTORY}/results" ]]; then rm -r "${DATA_ECAMBER_OUT}/${DIRECTORY}/results"; fi
+  if [[ -f "${DATA_ECAMBER_OUT}/${DIRECTORY}/formatdb.log" ]]; then rm "${DATA_ECAMBER_OUT}/${DIRECTORY}/formatdb.log"; fi
 }
 
 main "$@"

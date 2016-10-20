@@ -191,7 +191,7 @@ function main {
 
   ### checking if directory containing genomes (assemblies) exists and is not empty
   if [[ ! -e "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies does not exist, please create it." ; exit 1 ; fi
-  if [[ ! -s "${DATA}/${DIRECTORY}/assemblies" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies is empty, please add some genome fasta files into it" ; exit 1 ; fi
+  if [[ ! "$(ls -A ${DATA}/${DIRECTORY}/assemblies)" ]]; then echo "[ERROR] directory ${DATA}/${DIRECTORY}/assemblies is empty, please add some genome fasta files into it" ; exit 1; fi
 
   ### checking if reference genome is supplied
   if [[ "${REFGENOME}" = 'N.O.R.E.F' ]]; then echo "Reference genome will be the first fasta file appearing in directory ${DIRECTORY}." ; fi
@@ -220,12 +220,12 @@ function main {
   #Delete input and outputs (previously copied)
   rm -r "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${output_dir}" >> "${LOG}" 2>&1
   rm -r "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${input_dir}" >> "${LOG}" 2>&1
-  if [[ -e "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/second" ]]; then rm -f "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/second" >> "${LOG}" 2>&1; fi
-  if [[ -e "${listcoregenes}" ]]; then rm -f "${listcoregenes}" >> "${LOG}" 2>&1; fi
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${tmp_dir}" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${tmp_dir}" >> "${LOG}" 2>&1; fi  #remove *.synt and *.shrt (only duplications)
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${temp_dir}/Proteins" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${temp_dir}/Proteins" >> "${LOG}" 2>&1; fi  #remove *.prt (only duplications)
-  if [[ -d "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${temp_dir}/output" ]]; then rm -rf "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${temp_dir}/output" >> "${LOG}" 2>&1; fi  #remove *.lst (duplication of core genome lists)
-  for file in ${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${temp_dir}/*.opsc; do if [[ -f "${file}" ]]; then rm -f "${file}" >> "${LOG}" 2>&1; fi; done ##remove *.opsc (*.shrt => short format of *.opsc)
+  if [[ -e "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/second" ]]; then rm "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/second" >> "${LOG}" 2>&1; fi
+  if [[ -e "${listcoregenes}" ]]; then rm "${listcoregenes}" >> "${LOG}" 2>&1; fi
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${tmp_dir}" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${tmp_dir}" >> "${LOG}" 2>&1; fi  #remove *.synt and *.shrt (only duplications)
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${temp_dir}/Proteins" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${temp_dir}/Proteins" >> "${LOG}" 2>&1; fi  #remove *.prt (only duplications)
+  if [[ -d "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${temp_dir}/output" ]]; then rm -r "${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${temp_dir}/output" >> "${LOG}" 2>&1; fi  #remove *.lst (duplication of core genome lists)
+  for file in ${DATA}/${DIRECTORY}/${DATA_CORE_DIR}/${temp_dir}/*.opsc; do if [[ -f "${file}" ]]; then rm "${file}" >> "${LOG}" 2>&1; fi; done ##remove *.opsc (*.shrt => short format of *.opsc)
 
   #merge logs
   cat "${DATA}/${DIRECTORY}/logs/${DIRECTORY}.coregenome."?.log > "${DATA}/${DIRECTORY}/logs/${DIRECTORY}.coregenome.log";
