@@ -1,0 +1,76 @@
+{
+    "description": "<p>CoreGeneBuilder can be used to extract a core genome (or a persistent genome) from a given set of bacterial genomes.</p>",
+    "license": "other-open",
+    "title": "C3BI-pasteur-fr/CoreGeneBuilder v1.0",
+    "upload_type": "software",
+    "communities": [
+        {
+            "identifier": "zenodo"
+        }
+    ],
+    "publication_date": "2016-10-21",
+    "creators": [
+        {
+            "name": "Larsonneur Élise"
+        },
+        {
+            "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, UMR3525, CNRS, Paris, France",
+            "name": "Touchon Marie"
+        },
+        {
+            "affiliation": "Bioinformatics and Biostatistics Hub, Institut Pasteur, Paris, France, USR3756 CNRS, Paris, France",
+            "name": "Damien Mornico"
+        },
+        {
+            "affiliation": "Bioinformatics and Biostatistics Hub, Institut Pasteur Paris, France, USR3756 CNRS, Paris, France",
+            "name": "Criscuolo Alexis"
+        },
+        {
+            "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France",
+            "name": "Brisse Sylvain"
+        },
+        {
+            "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, UMR3525, CNRS, Paris, France",
+            "name": "Rocha Eduardo P. C."
+        }
+    ],
+    "contibutors": [
+      {
+            "affiliation": "Bioinformatics and Biostatistics Hub, Institut Pasteur Paris, France, USR3756 CNRS, Paris, France",
+            "name": "Néron Bertrand",
+            "type": "other"
+      }],
+    "access_right": "open",
+    "license": "GPL-3.0",
+    "keywords": ["Genome annotation", "Sequence classification", "Sequence distance matrix generation", "equence clustering",
+                 "Gene and protein families"],
+    "related_identifiers": [
+        {
+            "scheme": "url",
+            "identifier": "https://github.com/C3BI-pasteur-fr/CoreGeneBuilder/tree/v1.0",
+            "relation": "isSupplementTo"
+        }
+    ],
+    "grants": [{'id': "ANR-11-INBS-0013"}, {'id': "Pasteur International Bioresources Network (PIBnet)"}],
+    "subjects":[{"term": "Astronomy",
+                 "id": "http://id.loc.gov/authorities/subjects/sh85009003",
+                 "scheme": "url"},
+                {"term": "Sequence classification",
+                 "id": "http://edamontology.org/operation_2995",
+                 "scheme": "url"},
+                {"term": "Sequence distance matrix generation",
+                 "id": "http://edamontology.org/operation_0289",
+                 "scheme": "url"},
+                {"term": "Genome annotation",
+                 "id": "http://edamontology.org/operation_0362",
+                 "scheme": "url"},
+                {"term": "Sequence clustering",
+                 "id": "http://edamontology.org/operation_0291",
+                 "scheme": "url"},
+                {"term": "Gene and protein families",
+                 "id": "http://edamontology.org/topic_0623",
+                 "scheme": "url"},
+
+
+    ]
+}
