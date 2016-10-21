@@ -12,6 +12,7 @@
     "publication_date": "2016-10-21",
     "creators": [
         {
+            "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, Institut Pasteur–Hub Bioinformatique et Biostatistique–C3BI, USR 3756 IP CNRS, Paris, France, UMS 3601 IFB-Core CNRS, Gif-sur-Yvette, France",
             "name": "Larsonneur Élise"
         },
         {
@@ -41,8 +42,8 @@
             "name": "Néron Bertrand",
             "type": "other"
       }],
-    "keywords": ["Genome annotation", "Sequence classification", "Sequence distance matrix generation", "equence clustering",
-                 "Gene and protein families"],
+    "keywords": ["Genome annotation", "Sequence classification", "Sequence distance matrix generation", "Sequence clustering",
+                 "Gene and protein families", "Core genome", "Persistent genome"],
     "related_identifiers": [
         {
             "scheme": "url",
