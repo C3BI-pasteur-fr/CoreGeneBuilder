@@ -159,3 +159,9 @@ and by the Pasteur International Bioresources Network (PIBnet) programme.
 AUTHORS
 -------
  Elise Larsonneur, Marie Touchon, Damien Mornico, Alexis Criscuolo, Sylvain Brisse, Eduardo P. C. Rocha
+
+LICENSING
+---------
+CoreGeneBuilder is distributed under the terms of the 
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0).
+For further details see COPYING file.
