@@ -1,6 +1,7 @@
 {
     "description": "<p>CoreGeneBuilder can be used to extract a core genome (or a persistent genome) from a given set of bacterial genomes.</p>",
-    "license": "other-open",
+    "license": "GPL-3.0",
+    "access_right": "open",
     "title": "C3BI-pasteur-fr/CoreGeneBuilder v1.0",
     "upload_type": "software",
     "communities": [
@@ -40,8 +41,6 @@
             "name": "Néron Bertrand",
             "type": "other"
       }],
-    "access_right": "open",
-    "license": "GPL-3.0",
     "keywords": ["Genome annotation", "Sequence classification", "Sequence distance matrix generation", "equence clustering",
                  "Gene and protein families"],
     "related_identifiers": [
