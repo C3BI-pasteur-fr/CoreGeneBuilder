@@ -110,7 +110,7 @@ function display_usage {
   echo '     The persistent genome is the set of homologous genes (protein families) shared by less than 100% of the genomes.';
   echo '';
   echo 'CITATION :';
-  echo '     Please cite CoreGeneBuilder using the following doi <doi_to_insert>.';
+  echo '     Please cite CoreGeneBuilder using the DOI of this release (see README.md file).';
   echo '';
   echo 'EXAMPLES :';
   echo '     #provided reference genome and related genbank annotation, the functional annotation of reference genome will be transferred to the other genomes:';

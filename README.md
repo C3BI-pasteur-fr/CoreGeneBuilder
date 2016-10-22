@@ -6,7 +6,7 @@ CoreGeneBuilder can be used to extract a core genome (or a persistent genome) fr
 
 CITATION
 --------
-Please cite CoreGeneBuilder using the following doi:
+Please cite CoreGeneBuilder using the following DOI:
 [![DOI](https://zenodo.org/badge/62309201.svg)](https://zenodo.org/badge/latestdoi/62309201)
 
 CONTACT
