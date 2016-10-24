@@ -12,35 +12,35 @@
     "publication_date": "2016-10-21",
     "creators": [
         {
-            "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, Institut Pasteur–Hub Bioinformatique et Biostatistique–C3BI, USR 3756 IP CNRS, Paris, France, UMS 3601 IFB-Core CNRS, Gif-sur-Yvette, France",
-            "name": "Larsonneur Élise"
+          "name": "Larsonneur, Élise",
+          "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, Institut Pasteur–Hub Bioinformatique et Biostatistique–C3BI, USR 3756 IP CNRS, Paris, France, UMS 3601 IFB-Core CNRS, Gif-sur-Yvette, France"
         },
         {
-            "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, UMR3525, CNRS, Paris, France",
-            "name": "Touchon Marie"
+          "name": "Touchon, Marie",
+          "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, UMR3525, CNRS, Paris, France"
         },
         {
-            "affiliation": "Bioinformatics and Biostatistics Hub, Institut Pasteur, Paris, France, USR3756 CNRS, Paris, France",
-            "name": "Damien Mornico"
+          "name": "Mornico, Damien",
+          "affiliation": "Bioinformatics and Biostatistics Hub, Institut Pasteur, Paris, France, USR3756 CNRS, Paris, France"
         },
         {
-            "affiliation": "Bioinformatics and Biostatistics Hub, Institut Pasteur Paris, France, USR3756 CNRS, Paris, France",
-            "name": "Criscuolo Alexis"
+          "name": "Criscuolo, Alexis",
+          "affiliation": "Bioinformatics and Biostatistics Hub, Institut Pasteur Paris, France, USR3756 CNRS, Paris, France"
         },
         {
-            "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, UMR3525, CNRS, Paris, France",
-            "name": "Brisse Sylvain"
+          "name": "Brisse, Sylvain",
+          "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, UMR3525, CNRS, Paris, France"
         },
         {
-            "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, UMR3525, CNRS, Paris, France",
-            "name": "Rocha Eduardo P. C."
+          "name": "Rocha, Eduardo P. C.",
+          "affiliation": "Microbial Evolutionary Genomics, Institut Pasteur, Paris, France, UMR3525, CNRS, Paris, France"
         }
     ],
     "contibutors": [
       {
             "affiliation": "Bioinformatics and Biostatistics Hub, Institut Pasteur Paris, France, USR3756 CNRS, Paris, France",
-            "name": "Néron Bertrand",
-            "type": "other"
+            "name": "Néron, Bertrand",
+            "type": "Other"
       }],
     "keywords": ["Genome annotation", "Sequence classification", "Sequence distance matrix generation", "Sequence clustering",
                  "Gene and protein families", "Core genome", "Persistent genome"],
@@ -51,7 +51,6 @@
             "relation": "isSupplementTo"
         }
     ],
-    "grants": [{"id": "ANR-11-INBS-0013"}, {"id": "Pasteur International Bioresources Network (PIBnet)"}],
     "subjects":[{"term": "Sequence classification",
                  "id": "http://edamontology.org/operation_2995",
                  "scheme": "url"},
