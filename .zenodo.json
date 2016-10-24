@@ -10,6 +10,29 @@
     }
   ],
   "publication_date": "2016-10-21",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/C3BI-pasteur-fr/CoreGeneBuilder/tree/v1.0",
+      "relation": "isSupplementTo"
+    }
+  ],
+  "keywords": [
+    "Genome annotation",
+    "Sequence classification",
+    "Sequence distance matrix generation",
+    "Sequence clustering",
+    "Gene and protein families",
+    "Core genome",
+    "Persistent genome"
+  ],
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/C3BI-pasteur-fr/CoreGeneBuilder/tree/v1.0",
+      "relation": "isSupplementTo"
+    }
+  ],
   "creators": [
     {
       "name": "Larsonneur, Élise",
@@ -52,37 +75,30 @@
     "Core genome",
     "Persistent genome"
   ],
-  "related_identifiers": [
-    {
-      "scheme": "url",
-      "identifier": "https://github.com/C3BI-pasteur-fr/CoreGeneBuilder/tree/v1.0",
-      "relation": "isSupplementTo"
-    }
-  ],
   "subjects": [
     {
       "term": "Sequence classification",
-      "id": "http://edamontology.org/operation_2995",
+      "identifier": "http://edamontology.org/operation_2995",
       "scheme": "url"
     },
     {
       "term": "Sequence distance matrix generation",
-      "id": "http://edamontology.org/operation_0289",
+      "identifier": "http://edamontology.org/operation_0289",
       "scheme": "url"
     },
     {
       "term": "Genome annotation",
-      "id": "http://edamontology.org/operation_0362",
+      "identifier": "http://edamontology.org/operation_0362",
       "scheme": "url"
     },
     {
       "term": "Sequence clustering",
-      "id": "http://edamontology.org/operation_0291",
+      "identifier": "http://edamontology.org/operation_0291",
       "scheme": "url"
     },
     {
       "term": "Gene and protein families",
-      "id": "http://edamontology.org/topic_0623",
+      "identifier": "http://edamontology.org/topic_0623",
       "scheme": "url"
     }
   ]
