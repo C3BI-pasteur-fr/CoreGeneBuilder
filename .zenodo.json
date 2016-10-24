@@ -51,7 +51,7 @@
             "relation": "isSupplementTo"
         }
     ],
-    "grants": [{'id': "ANR-11-INBS-0013"}, {'id': "Pasteur International Bioresources Network (PIBnet)"}],
+    "grants": [{"id": "ANR-11-INBS-0013"}, {"id": "Pasteur International Bioresources Network (PIBnet)"}],
     "subjects":[{"term": "Sequence classification",
                  "id": "http://edamontology.org/operation_2995",
                  "scheme": "url"},
@@ -66,8 +66,6 @@
                  "scheme": "url"},
                 {"term": "Gene and protein families",
                  "id": "http://edamontology.org/topic_0623",
-                 "scheme": "url"},
-
-
+                 "scheme": "url"}
     ]
 }
