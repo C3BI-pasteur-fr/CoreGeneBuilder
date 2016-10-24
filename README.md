@@ -150,7 +150,9 @@ core_genome       : contains input and output files of module COREGENOME, contai
 
 ACKNOWLEDGMENTS
 ---------------
-This work was financially supported
+  We thank Bertrand Néron of Institut Pasteur for his contribution to 
+the deployment of CoreGeneBuilder on the IFB cloud and as a docker image on the registry BioShadock. <br>
+  This work was financially supported
 by the French Institute of Bioinformatics (Grant ANR-11-INBS-0013)
 and by the Pasteur International Bioresources Network (PIBnet) programme.
 
