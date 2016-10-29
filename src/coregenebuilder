@@ -114,13 +114,13 @@ function display_usage {
   echo '';
   echo 'EXAMPLES :';
   echo '     #provided reference genome and related genbank annotation, the functional annotation of reference genome will be transferred to the other genomes:';
-  echo "     $0 -d klpn5refannot -n klpn -g MGH78578_NC.fasta -a MGH78578_NC.gb -e NC_ -p 95 -t 4";
+  echo "     $0 -d klpn5refannot -n klpn -g MGH78578_NC.fasta -a MGH78578_NC.gb -e NC_ -p 95 -t 1 -s 3";
   echo '';
   echo '     #provided reference genome but not provided related genbank annotation, the reference genome will be de novo annotated:';
-  echo "     $0 -d klpn5refannot -n klpn -g MGH78578_NC.fasta -p 95 -t 4";
+  echo "     $0 -d klpn5refannot -n klpn -g MGH78578_NC.fasta -p 95 -t 1 -s 3";
   echo ''; 
   echo '     #not provided reference genome and related genbank annotation, the reference genome will be the first on the genome list sorted alphabetically:';
-  echo "     $0 -d klpn5refannot -n klpn -p 100 -t 4";  
+  echo "     $0 -d klpn5refannot -n klpn -p 100 -t 1 -s 3";  
 } 
 
 

@@ -68,7 +68,7 @@ We call `$DIR` the analysis directory. Here `DIR=klpn5refannot`. <br>
 Run this command to test your pipeline installation: <br>
 ~~~~
 #provided genbank annotation
-$ coregenebuilder -d klpn5refannot -n klpn -g MGH78578_NC.fasta -a MGH78578_NC.gb -e "NC_" -p 95 -t 6  
+$ coregenebuilder -d klpn5refannot -n klpn -g MGH78578_NC.fasta -a MGH78578_NC.gb -e "NC_" -p 95 -t 1 -s 3  
 ~~~~
 
 

@@ -184,13 +184,13 @@ DESCRIPTION:
 
 EXAMPLES:
      #provided reference genome and related genbank annotation, the functional annotation of reference genome will be transferred to the other genomes:
-     coregenebuilder -d klpn5refannot -n klpn -g MGH78578_NC.fasta -a MGH78578_NC.gb -e NC_ -p 95 -t 4
+     coregenebuilder -d klpn5refannot -n klpn -g MGH78578_NC.fasta -a MGH78578_NC.gb -e NC_ -p 95 -t 1 -s 3
 
      #provided reference genome but not provided related genbank annotation, the reference genome will be de novo annotated:
-     coregenebuilder -d klpn5refannot -n klpn -g MGH78578_NC.fasta -p 95 -t 4
+     coregenebuilder -d klpn5refannot -n klpn -g MGH78578_NC.fasta -p 95 -t 1 -s 3
 
      #not provided reference genome and related genbank annotation, the reference genome will be the first on genome list sorted alphabetically:
-     coregenebuilder -d klpn5refannot -n klpn -p 100 -t 4
+     coregenebuilder -d klpn5refannot -n klpn -p 100 -t 1 -s 3
 ~~~~
 
 ___
@@ -217,7 +217,7 @@ We call `$DIR` the analysis directory. Here `DIR=klpn5refannot`. <br>
 Run this command to test your pipeline installation: <br>
 ~~~~
 #provided genbank annotation
-$ coregenebuilder -d klpn5refannot -n klpn -g MGH78578_NC.fasta -a MGH78578_NC.gb -e "NC_" -p 95 -t 6  
+$ coregenebuilder -d klpn5refannot -n klpn -g MGH78578_NC.fasta -a MGH78578_NC.gb -e "NC_" -p 95 -t 1 -s 3 
 ~~~~
 
 
