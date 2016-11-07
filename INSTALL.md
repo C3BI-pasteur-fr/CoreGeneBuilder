@@ -9,8 +9,7 @@ III - Installation from source files on Unix machine <br>
 
 I   - Installation of a docker image
 ------------------------------------
-Download the docker image here:
-<TODO:INSERT_DOCKER_URL>
+A docker container 'CoreGeneBuilder' is hosted on the docker registry BioShadock, you can download it here: https://docker-ui.genouest.org
 
 You can then display help of CoreGeneBuilder using this command : <br>
 ~~~~
@@ -25,9 +24,9 @@ $ docker run -v /home/dupont/cganalysis:/tmp coregenebuilder
 
 II  - Installation on the IFB cloud
 -----------------------------------
-Nothing to be done. A Virtual Machine 'CoreGeneBuilder' is already available on the cloud of the French Institute of Bioinformatics (IFB). <br>
+Nothing to be done. An appliance 'CoreGeneBuilder' is already available on the cloud of the French Institute of Bioinformatics (IFB). <br>
 You need to have a user account to use CoreGeneBuilder on the cloud:
-https://cloud.france-bioinformatique.fr/cloud/
+https://cloud.france-bioinformatique.fr/cloud
 
 Display help using this command :
 ~~~~

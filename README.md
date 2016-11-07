@@ -32,6 +32,8 @@ CNRS, UMR 3525 <br>
 
 INSTALLATION
 ------------
+An appliance 'CoreGeneBuilder' is available on the IFB cloud: https://www.france-bioinformatique.fr/fr/cloud. <br>
+A docker container 'CoreGeneBuilder' is also hosted on the docker registry BioShadock: https://docker-ui.genouest.org. <br>
 See `INSTALL.md` file for instructions.
 
 
@@ -54,7 +56,7 @@ One dataset is provided (inputs only).
 It can be founded into directory `data/klpn5refannot`. <br>
 More precisely:
 ~~~~
-# installation from ansible (on IFB cloud) or docker repository
+# installation on the IFB cloud or from the docker repository
 /usr/local/share/coregenebuilder/data/klpn5refannot
 # IFB cloud only:
 cp -pr /usr/local/share/coregenebuilder/data/klpn5refannot /root/mydisk/
@@ -79,7 +81,7 @@ We call `$DIR` the new analysis directory. Here `DIR=cg_analysis_ex`.
 
 1.Move to data directory:
 ~~~~
-# if you run coregenebuilder on IFB cloud:
+# if you run coregenebuilder on the IFB cloud :
 $ cd /root/mydisk
 $ mkdir cg_analysis_ex
 ~~~~
@@ -150,7 +152,7 @@ core_genome       : contains input and output files of module COREGENOME, contai
 
 ACKNOWLEDGMENTS
 ---------------
-  We thank Bertrand Néron of Institut Pasteur for his contribution to 
+  We thank Bertrand Néron of Institut Pasteur for his contribution to
 the deployment of CoreGeneBuilder on the IFB cloud and as a docker image on the registry BioShadock. <br>
   This work was financially supported
 by the French Institute of Bioinformatics (Grant ANR-11-INBS-0013)
@@ -163,6 +165,6 @@ AUTHORS
 
 LICENSING
 ---------
-CoreGeneBuilder is distributed under the terms of the 
+CoreGeneBuilder is distributed under the terms of the
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0).
 For further details see COPYING file.
