@@ -46,8 +46,10 @@ Or if you run CoreGeneBuilder using docker, prefix this command by: <br>
 `$ docker run -v <your_local_directory_where_are_your_data>:/root/mydisk coregenebuilder`
 
 Example: <br>
-`$ docker run -v /home/dupont/cganalysis:/root/mydisk coregenebuilder`
-
+~~~~
+$ DOCKER_DATA=/home/dupont/cganalysis
+$ docker run -v $DOCKER_DATA:/root/mydisk coregenebuilder
+~~~~
 
 QUICK START
 -----------
@@ -56,14 +58,25 @@ One dataset is provided (inputs only).
 It can be founded into directory `data/klpn5refannot`. <br>
 More precisely:
 ~~~~
-# installation on the IFB cloud or from the docker repository
-/usr/local/share/coregenebuilder/data/klpn5refannot
-# IFB cloud only:
-cp -pr /usr/local/share/coregenebuilder/data/klpn5refannot /root/mydisk/
+# installation on the IFB cloud
+$ cp -pr /usr/local/share/coregenebuilder/data/klpn5refannot /root/mydisk/
+$ cd /root/mydisk/klpn5refannot
 
-# installation from coregenebuilder git repository
-CGPIPELINE=<where_coregenebuilder_distribution_is_installed_on_local_machine>
-$CGPIPELINE/data/klpn5refannot
+# installation from the docker repository
+### we suppose that your data will be into the following local directory:
+$ DOCKER_DATA=/home/dupont/cganalysis
+### then download the data:
+$ cd $DOCKER_DATA
+$ wget https://github.com/C3BI-pasteur-fr/CoreGeneBuilder/archive/v1.0.tar.gz
+$ tar -zxf v1.0.tar.gz && mv ./CoreGeneBuilder-1.0/data/klpn5refannot . && rm -r ./CoreGeneBuilder-1.0 ./v1.0.tar.gz
+### the quick start data are now here:
+$ cd $DOCKER_DATA/klpn5refannot
+
+# installation from the coregenebuilder git repository
+$ CGPIPELINE=<where_coregenebuilder_distribution_is_installed_on_your_local_machine>
+### for example:
+$ CGPIPELINE=/home/dupont/CoreGeneBuilder
+$ cd $CGPIPELINE/data/klpn5refannot
 ~~~~
 
 We call `$DIR` the analysis directory. Here `DIR=klpn5refannot`. <br>
@@ -87,12 +100,11 @@ $ mkdir cg_analysis_ex
 ~~~~
 ~~~~
 # if you run the docker image:
-$ cd <your_local_directory_where_are_your_data>
-$ cd /home/dupont/cganalysis
+$ cd $DOCKER_DATA
 $ mkdir cg_analysis_ex
 ~~~~
 ~~~~
-## if coregenebuilder is installed on local machine:
+## if coregenebuilder is installed on a local machine from the git repository:
 $ cd $CGPIPELINE/data
 $ mkdir cg_analysis_ex
 ~~~~
@@ -105,7 +117,7 @@ And import genomes:
 ~~~~
 $ cp <PATH_OF_GENOME_FASTA>/* cg_analysis_ex/assemblies/.
 
-# or create a link to the target input directory that contain fasta files
+# or create a link to the target input directory that contains fasta files
 $ cd cg_analysis_ex/assemblies
 $ ln -s <PATH_OF_GENOME_FASTA> assemblies
 ~~~~
@@ -152,7 +164,7 @@ core_genome       : contains input and output files of module COREGENOME, contai
 
 ACKNOWLEDGMENTS
 ---------------
-  We thank Bertrand Néron of Institut Pasteur for his contribution to
+  We thank Bertrand Néron and Amandine Perrin of Institut Pasteur for their contribution to
 the deployment of CoreGeneBuilder on the IFB cloud and as a docker image on the registry BioShadock. <br>
   This work was financially supported
 by the French Institute of Bioinformatics (Grant ANR-11-INBS-0013)
